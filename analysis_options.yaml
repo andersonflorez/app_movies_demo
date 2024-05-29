@@ -1,0 +1,10 @@
+include: package:lint/strict.yaml
+
+analyzer:
+  language:
+    strict-casts: false
+
+linter:
+  rules:
+    prefer_single_quotes: true
+    prefer_final_locals: true
