@@ -1,3 +1,4 @@
+import 'package:app_movies_demo_exito_2/global/api/api_client.dart';
 import 'package:app_movies_demo_exito_2/src/data/repositories_impl/movie_repository_impl.dart';
 import 'package:flutter/material.dart';
 

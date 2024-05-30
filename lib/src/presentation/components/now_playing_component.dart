@@ -1,6 +1,6 @@
 import 'package:app_movies_demo_exito_2/global/controller_state.dart';
-import 'package:app_movies_demo_exito_2/src/presentation/movies_controller.dart';
-import 'package:cached_network_image/cached_network_image.dart';
+import 'package:app_movies_demo_exito_2/src/presentation/components/image_movie.dart';
+import 'package:app_movies_demo_exito_2/src/presentation/controllers/movies_now_playing_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper_view/flutter_swiper_view.dart';
 import 'package:provider/provider.dart';
@@ -12,7 +12,7 @@ class NowPlayingComponent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<MoviesController>(
+    return Consumer<MoviesNowPlayingController>(
       builder: (context, moviesController, child) {
         if (moviesController.state == ControllerState.initial ||
             moviesController.state == ControllerState.loading) {
@@ -23,14 +23,12 @@ class NowPlayingComponent extends StatelessWidget {
           final movies = moviesController.paginationMovies!.movies;
           return Swiper(
             itemBuilder: (context, index) {
-              return CachedNetworkImage(
-                imageUrl: movies[index].getUrlImage(),
-                placeholder: (context, url) => Image.asset('assets/images/image_placeholder.png'),
-                errorWidget: (context, url, error) => Image.asset('assets/images/image_error.png'),
+              return ImageMovie(
+                urlImage: movies[index].getUrlImage(),
               );
             },
             itemCount: movies.length,
-            itemWidth: 300.0,
+            itemWidth: 255,
             layout: SwiperLayout.STACK,
           );
         }

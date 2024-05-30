@@ -1,6 +1,7 @@
 import 'package:app_movies_demo_exito_2/src/presentation/components/now_playing_component.dart';
 import 'package:app_movies_demo_exito_2/src/presentation/components/popular_component.dart';
-import 'package:app_movies_demo_exito_2/src/presentation/movies_controller.dart';
+import 'package:app_movies_demo_exito_2/src/presentation/controllers/movies_now_playing_controller.dart';
+import 'package:app_movies_demo_exito_2/src/presentation/controllers/movies_popular_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -15,7 +16,8 @@ class _MoviesScreenState extends State<MoviesScreen> {
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      context.read<MoviesController>().getMoviesNowPlaying();
+      context.read<MoviesNowPlayingController>().getMoviesNowPlaying();
+      context.read<MoviesPopularController>().getMoviesPopular();
     });
     super.initState();
   }
@@ -44,6 +46,7 @@ class _MoviesScreenState extends State<MoviesScreen> {
             ),
             SizedBox(height: 30),
             Text('Populares'),
+            SizedBox(height: 10),
             Expanded(
               child: PopularComponent(),
             ),
