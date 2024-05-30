@@ -1,3 +1,4 @@
+import 'package:app_movies_demo_exito_2/config/app_theme.dart';
 import 'package:app_movies_demo_exito_2/global/api/api_client.dart';
 import 'package:app_movies_demo_exito_2/src/data/repositories_impl/movie_repository_impl.dart';
 import 'package:app_movies_demo_exito_2/src/domain/repositories/movie_repository.dart';
@@ -5,6 +6,7 @@ import 'package:app_movies_demo_exito_2/src/presentation/controllers/movies_now_
 import 'package:app_movies_demo_exito_2/src/presentation/controllers/movies_popular_controller.dart';
 import 'package:app_movies_demo_exito_2/src/presentation/movies_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get_it/get_it.dart';
 import 'package:provider/provider.dart';
 
@@ -35,10 +37,8 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         title: 'Flutter Demo',
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-          useMaterial3: true,
-        ),
+        theme: AppTheme().lightTheme,
+        darkTheme: AppTheme().darkTheme,
         debugShowCheckedModeBanner: false,
         home: const MoviesScreen(),
       ),

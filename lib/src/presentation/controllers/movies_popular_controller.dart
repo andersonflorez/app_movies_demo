@@ -1,4 +1,5 @@
 import 'package:app_movies_demo_exito_2/global/controller_state.dart';
+import 'package:app_movies_demo_exito_2/global/custom_exception.dart';
 import 'package:app_movies_demo_exito_2/src/domain/models/pagination_movies.dart';
 import 'package:app_movies_demo_exito_2/src/domain/repositories/movie_repository.dart';
 import 'package:app_movies_demo_exito_2/src/domain/usecases/get_movies_popular.dart';
@@ -9,8 +10,9 @@ class MoviesPopularController extends ChangeNotifier {
   ControllerState _state = ControllerState.initial;
   late final GetMoviesPopular _getMoviesPopular;
   final MovieRepository _movieRepository;
+  CustomException? error;
 
-  MoviesPopularController(this._movieRepository){
+  MoviesPopularController(this._movieRepository) {
     _getMoviesPopular = GetMoviesPopular(_movieRepository);
   }
 
@@ -18,12 +20,18 @@ class MoviesPopularController extends ChangeNotifier {
   PaginationMovies get paginationMovies => _paginationMovies;
 
   Future<void> getMoviesPopular() async {
-    _state = ControllerState.loading;
-    notifyListeners();
+    try {
+      _state = ControllerState.loading;
+      notifyListeners();
 
-    _paginationMovies = await _getMoviesPopular.call();
+      _paginationMovies = await _getMoviesPopular.call();
 
-    _state = ControllerState.success;
-    notifyListeners();
+      _state = ControllerState.success;
+      notifyListeners();
+    } catch (e) {
+      error = e as CustomException;
+      _state = ControllerState.error;
+      notifyListeners();
+    }
   }
 }

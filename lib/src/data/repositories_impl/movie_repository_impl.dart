@@ -1,4 +1,5 @@
 import 'package:app_movies_demo_exito_2/global/api/api_client.dart';
+import 'package:app_movies_demo_exito_2/global/custom_exception.dart';
 import 'package:app_movies_demo_exito_2/src/data/datasources/api/movies_api.dart';
 import 'package:app_movies_demo_exito_2/src/domain/models/pagination_movies.dart';
 import 'package:app_movies_demo_exito_2/src/domain/repositories/movie_repository.dart';
@@ -13,12 +14,32 @@ class MovieRepositoryImpl extends MovieRepository {
   @override
   Future<PaginationMovies> getMoviesNowPlaying() async {
     final response = await moviesApi.getMoviesNowPlaying();
-    return PaginationMovies.fromJson(response);
+    try {
+      return PaginationMovies.fromJson(response);
+    } catch (e, s) {
+      throw CustomException(
+        messageUser: 'Perdón, no pudimos mostrarte las películas en cine',
+        internalErrorCode: '10T123',
+        internalErrorMessage: e.toString(),
+        stackTrace: s,
+        data: response.toString(),
+      );
+    }
   }
 
   @override
   Future<PaginationMovies> getMoviesPopular() async {
     final response = await moviesApi.getMoviesPopular();
-    return PaginationMovies.fromJson(response);
+    try {
+      return PaginationMovies.fromJson(response);
+    } catch (e,s) {
+      throw CustomException(
+        messageUser: 'Perdón, no pudimos mostrarte las películas en populares',
+        internalErrorCode: '20T123',
+        internalErrorMessage: e.toString(),
+        stackTrace: s,
+        data: response.toString(),
+      );
+    }
   }
 }

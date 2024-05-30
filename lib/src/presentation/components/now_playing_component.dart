@@ -16,9 +16,14 @@ class NowPlayingComponent extends StatelessWidget {
       builder: (context, moviesController, child) {
         if (moviesController.state == ControllerState.initial ||
             moviesController.state == ControllerState.loading) {
-          return CircularProgressIndicator();
+          return Center(child: CircularProgressIndicator());
         } else if (moviesController.state == ControllerState.error) {
-          return Text("error");
+          return Column(
+            children: [
+              Text(moviesController.error!.internalErrorCode),
+              Text(moviesController.error!.messageUser),
+            ],
+          );
         } else {
           final movies = moviesController.paginationMovies!.movies;
           return Swiper(

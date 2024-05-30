@@ -15,25 +15,41 @@ class PopularComponent extends StatelessWidget {
       builder: (context, moviesPopularController, child) {
         if (moviesPopularController.state == ControllerState.initial ||
             moviesPopularController.state == ControllerState.loading) {
-          return CircularProgressIndicator();
+          return Center(child: CircularProgressIndicator());
         } else if (moviesPopularController.state == ControllerState.error) {
-          return Text("error");
+          return Column(
+            children: [
+              Text(
+                moviesPopularController.error!.messageUser,
+                style: TextStyle(
+                  color: Theme.of(context).canvasColor,
+                ),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  moviesPopularController.getMoviesPopular();
+                },
+                child: Text("Reintentar"),
+              ),
+            ],
+          );
         } else {
           //return Image.asset('assets/images/image_placeholder.jpg');
-          return ListView(
+          /*return ListView(
             children: [
               Image.asset('assets/images/image_placeholder.jpg'),
               Image.asset('assets/images/image_placeholder.jpg'),
               Image.asset('assets/images/image_placeholder.jpg'),
               Image.asset('assets/images/image_placeholder.jpg'),
             ],
-          );
-          /* final movies = moviesPopularController.paginationMovies.movies;
+          );*/
+          final movies = moviesPopularController.paginationMovies.movies;
           return ListView.separated(
             scrollDirection: Axis.horizontal,
             itemBuilder: (context, index) {
               final movie = movies[index];
               return SizedBox(
+                width: 100,
                 child: Column(
                   children: [
                     ImageMovie(urlImage: movie.getUrlImage()),
@@ -50,7 +66,7 @@ class PopularComponent extends StatelessWidget {
               return SizedBox(width: 15);
             },
             itemCount: movies.length,
-          );*/
+          );
         }
       },
     );
