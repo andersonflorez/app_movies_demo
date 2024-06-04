@@ -9,7 +9,7 @@ class MoviesApi {
 
   Future<Map<String, dynamic>> getMoviesNowPlaying() async {
     try {
-      await Future.delayed(Duration(seconds: 3));
+      //await Future.delayed(Duration(seconds: 3));
       final response = await apiClient.get(
           'https://api.themoviedb.org/3/movie/now_playing?api_key=a4f267f23954fdcaf26820877cdc213a&language=es-CO');
       return response.data as Map<String, dynamic>;
@@ -24,15 +24,32 @@ class MoviesApi {
     }
   }
 
-  Future<Map<String, dynamic>> getMoviesPopular() async {
+  Future<Map<String, dynamic>> getMoviesPopular(int page) async {
     try {
-      await Future.delayed(Duration(seconds: 10));
+      await Future.delayed(Duration(seconds: 3));
       final response = await apiClient.get(
-          'https://api.themoviedb.org/3/movie/popular?api_key=a4f267f23954fdcaf26820877cdc213a&language=es-CO');
+          'https://api.themoviedb.org/3/movie/popular?api_key=a4f267f23954fdcaf26820877cdc213a&language=es-CO&page=$page');
       return response.data as Map<String, dynamic>;
     } on DioException catch (e, s) {
       throw CustomException(
         messageUser: 'Perdón, no pudimos mostrarte las películas en populares',
+        internalErrorCode: '20E-${e.response!.statusCode}',
+        internalErrorMessage: e.toString(),
+        stackTrace: s,
+        httpErrorCode: e.response!.statusCode,
+      );
+    }
+  }
+
+  Future<Map<String, dynamic>> getCastingMovie(String movieId) async {
+    try {
+      await Future.delayed(Duration(seconds: 5));
+      final response = await apiClient.get(
+          'https://api.themoviedb.org/3/movie/$movieId/credits?api_key=a4f267f23954fdcaf26820877cdc213a&language=es-CO');
+      return response.data as Map<String, dynamic>;
+    } on DioException catch (e, s) {
+      throw CustomException(
+        messageUser: 'Perdón, no pudimos mostrarte las actores de la película',
         internalErrorCode: '20E-${e.response!.statusCode}',
         internalErrorMessage: e.toString(),
         stackTrace: s,

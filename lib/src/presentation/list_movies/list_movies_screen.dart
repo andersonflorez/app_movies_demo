@@ -1,6 +1,6 @@
 import 'package:app_movies_demo_exito_2/global/controller_state.dart';
-import 'package:app_movies_demo_exito_2/src/presentation/components/now_playing_component.dart';
-import 'package:app_movies_demo_exito_2/src/presentation/components/popular_component.dart';
+import 'package:app_movies_demo_exito_2/src/presentation/list_movies/components/now_playing_component.dart';
+import 'package:app_movies_demo_exito_2/src/presentation/list_movies/components/popular_component.dart';
 import 'package:app_movies_demo_exito_2/src/presentation/controllers/movies_now_playing_controller.dart';
 import 'package:app_movies_demo_exito_2/src/presentation/controllers/movies_popular_controller.dart';
 import 'package:flutter/material.dart';

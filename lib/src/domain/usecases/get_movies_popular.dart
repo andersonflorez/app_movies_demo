@@ -5,7 +5,7 @@ class GetMoviesPopular {
     final MovieRepository movieRepository;
 
   GetMoviesPopular(this.movieRepository);
-  Future<PaginationMovies> call() {
-    return movieRepository.getMoviesPopular();
+  Future<PaginationMovies> call(int page) {
+    return movieRepository.getMoviesPopular(page);
   }
 }

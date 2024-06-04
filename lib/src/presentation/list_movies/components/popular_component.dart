@@ -1,7 +1,14 @@
 import 'package:app_movies_demo_exito_2/global/controller_state.dart';
+import 'package:app_movies_demo_exito_2/src/domain/models/movie.dart';
+import 'package:app_movies_demo_exito_2/src/domain/repositories/movie_repository.dart';
 import 'package:app_movies_demo_exito_2/src/presentation/components/image_movie.dart';
+import 'package:app_movies_demo_exito_2/src/presentation/components/item_list_view_movie.dart';
+import 'package:app_movies_demo_exito_2/src/presentation/controllers/casting_movie_controller.dart';
 import 'package:app_movies_demo_exito_2/src/presentation/controllers/movies_popular_controller.dart';
+import 'package:app_movies_demo_exito_2/src/presentation/detail_movie/detail_movie_screen.dart';
+import 'package:app_movies_demo_exito_2/src/presentation/list_movies/components/list_popular_movies.dart';
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 import 'package:provider/provider.dart';
 
 class PopularComponent extends StatelessWidget {
@@ -14,7 +21,8 @@ class PopularComponent extends StatelessWidget {
     return Consumer<MoviesPopularController>(
       builder: (context, moviesPopularController, child) {
         if (moviesPopularController.state == ControllerState.initial ||
-            moviesPopularController.state == ControllerState.loading) {
+            (moviesPopularController.state == ControllerState.loading &&
+                moviesPopularController.paginationMovies == null)) {
           return Center(child: CircularProgressIndicator());
         } else if (moviesPopularController.state == ControllerState.error) {
           return Column(
@@ -36,36 +44,25 @@ class PopularComponent extends StatelessWidget {
         } else {
           //return Image.asset('assets/images/image_placeholder.jpg');
           /*return ListView(
+            scrollDirection: Axis.horizontal,
+            shrinkWrap: true,
             children: [
-              Image.asset('assets/images/image_placeholder.jpg'),
+              Column(
+                mainAxisSize: MainAxisSize.min ,
+                children: [
+                  Image.asset('assets/images/image_placeholder.jpg'),
+                  Text("af"),
+                ],
+              ),
               Image.asset('assets/images/image_placeholder.jpg'),
               Image.asset('assets/images/image_placeholder.jpg'),
               Image.asset('assets/images/image_placeholder.jpg'),
             ],
           );*/
-          final movies = moviesPopularController.paginationMovies.movies;
-          return ListView.separated(
-            scrollDirection: Axis.horizontal,
-            itemBuilder: (context, index) {
-              final movie = movies[index];
-              return SizedBox(
-                width: 100,
-                child: Column(
-                  children: [
-                    ImageMovie(urlImage: movie.getUrlImage()),
-                    SizedBox(height: 5),
-                    Text(
-                      movie.title,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                  ],
-                ),
-              );
-            },
-            separatorBuilder: (context, index) {
-              return SizedBox(width: 15);
-            },
-            itemCount: movies.length,
+          final movies = moviesPopularController.paginationMovies!.movies;
+          return ListPopularMovies(
+            movies: movies,
+            loading: moviesPopularController.state == ControllerState.loading,
           );
         }
       },
