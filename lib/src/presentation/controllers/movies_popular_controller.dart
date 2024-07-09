@@ -1,6 +1,5 @@
 import 'package:app_movies_demo_exito_2/global/controller_state.dart';
 import 'package:app_movies_demo_exito_2/global/custom_exception.dart';
-import 'package:app_movies_demo_exito_2/src/domain/models/movie.dart';
 import 'package:app_movies_demo_exito_2/src/domain/models/pagination_movies.dart';
 import 'package:app_movies_demo_exito_2/src/domain/repositories/movie_repository.dart';
 import 'package:app_movies_demo_exito_2/src/domain/usecases/get_movies_popular.dart';

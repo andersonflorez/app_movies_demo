@@ -1,4 +1,3 @@
-import 'package:app_movies_demo_exito_2/global/api/api_client.dart';
 import 'package:app_movies_demo_exito_2/global/custom_exception.dart';
 import 'package:app_movies_demo_exito_2/src/data/datasources/api/movies_api.dart';
 import 'package:app_movies_demo_exito_2/src/domain/models/casting_movie.dart';
@@ -9,7 +8,7 @@ import 'package:get_it/get_it.dart';
 class MovieRepositoryImpl extends MovieRepository {
   late final MoviesApi moviesApi;
   MovieRepositoryImpl() {
-    moviesApi = MoviesApi(GetIt.I<ApiClient>());
+    moviesApi = GetIt.I<MoviesApi>();
   }
 
   @override

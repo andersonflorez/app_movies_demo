@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
 class MoviesPage extends StatelessWidget {
-  const MoviesPage({Key? key}) : super(key: key);
+  const MoviesPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +17,7 @@ class MoviesPage extends StatelessWidget {
                 future: getMoviesNowPlaying(dio),
                 builder: (context, snapshot) {
                   if (snapshot.data == null) {
-                    return CircularProgressIndicator();
+                    return const CircularProgressIndicator();
                   }
                   final movies = snapshot.data!['results'] as List<dynamic>;
                   return Column(
@@ -25,12 +25,12 @@ class MoviesPage extends StatelessWidget {
                   );
                 },
               ),
-              Divider(),
+              const Divider(),
               FutureBuilder(
                 future: getMoviesPopular(dio),
                 builder: (context, snapshot) {
                   if (snapshot.data == null) {
-                    return CircularProgressIndicator();
+                    return const CircularProgressIndicator();
                   }
                   final movies = snapshot.data!['results'] as List<dynamic>;
                   return Column(

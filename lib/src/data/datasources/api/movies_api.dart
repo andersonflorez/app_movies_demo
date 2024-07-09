@@ -11,7 +11,8 @@ class MoviesApi {
     try {
       //await Future.delayed(Duration(seconds: 3));
       final response = await apiClient.get(
-          'https://api.themoviedb.org/3/movie/now_playing?api_key=a4f267f23954fdcaf26820877cdc213a&language=es-CO');
+        'https://api.themoviedb.org/3/movie/now_playing?api_key=a4f267f23954fdcaf26820877cdc213a&language=es-CO',
+      );
       return response.data as Map<String, dynamic>;
     } on DioException catch (e, s) {
       throw CustomException(
@@ -26,9 +27,10 @@ class MoviesApi {
 
   Future<Map<String, dynamic>> getMoviesPopular(int page) async {
     try {
-      await Future.delayed(Duration(seconds: 3));
+      await Future.delayed(const Duration(seconds: 3));
       final response = await apiClient.get(
-          'https://api.themoviedb.org/3/movie/popular?api_key=a4f267f23954fdcaf26820877cdc213a&language=es-CO&page=$page');
+        'https://api.themoviedb.org/3/movie/popular?api_key=a4f267f23954fdcaf26820877cdc213a&language=es-CO&page=$page',
+      );
       return response.data as Map<String, dynamic>;
     } on DioException catch (e, s) {
       throw CustomException(

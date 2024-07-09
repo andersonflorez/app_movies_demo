@@ -12,10 +12,10 @@ class CustomException implements Exception {
     required this.internalErrorMessage,
     required this.stackTrace,
     this.data,
-    this.httpErrorCode
+    this.httpErrorCode,
   }){
     //Crashlytics
-    print("CRASH ${this.stackTrace}");
-    print("CRASH ${this.data}");
+    print('CRASH $stackTrace');
+    print('CRASH $data');
   }
 }

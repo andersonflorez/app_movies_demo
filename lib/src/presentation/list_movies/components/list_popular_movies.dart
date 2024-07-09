@@ -65,6 +65,7 @@ class _ListPopularMoviesState extends State<ListPopularMovies> {
                   ),
                 ),*/
                   builder: (context) => DetailMovieScreen(
+                    fromNavigation: 'popular',
                     movie: movie,
                   ),
                 ),

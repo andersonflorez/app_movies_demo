@@ -1,4 +1,4 @@
-import 'package:app_movies_demo_exito_2/global/api/api_client.dart';
+
 import 'package:app_movies_demo_exito_2/src/data/repositories_impl/movie_repository_impl.dart';
 import 'package:flutter/material.dart';
 
@@ -16,7 +16,7 @@ class MoviesPageCopy extends StatelessWidget {
                 future: MovieRepositoryImpl().getMoviesNowPlaying(),
                 builder: (context, snapshot) {
                   if (snapshot.data == null) {
-                    return CircularProgressIndicator();
+                    return const CircularProgressIndicator();
                   }
                   final movies = snapshot.data!.movies;
                   return Column(
@@ -24,12 +24,12 @@ class MoviesPageCopy extends StatelessWidget {
                   );
                 },
               ),
-              Divider(),
+              const Divider(),
               FutureBuilder(
-                future: MovieRepositoryImpl().getMoviesPopular(),
+                future: MovieRepositoryImpl().getMoviesPopular(1),
                 builder: (context, snapshot) {
                   if (snapshot.data == null) {
-                    return CircularProgressIndicator();
+                    return const CircularProgressIndicator();
                   }
                   final movies = snapshot.data!.movies;
                   return Column(

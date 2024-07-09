@@ -8,9 +8,10 @@ import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 
 class DetailMovieScreen extends StatefulWidget {
-  const DetailMovieScreen({super.key, required this.movie});
+  const DetailMovieScreen({super.key, required this.movie, required this.fromNavigation});
 
   final Movie movie;
+  final String fromNavigation;
 
   @override
   State<DetailMovieScreen> createState() => _DetailMovieScreenState();
@@ -43,8 +44,13 @@ class _DetailMovieScreenState extends State<DetailMovieScreen> {
                   children: [
                     SizedBox(
                       width: 120,
-                      child: ImageMovie(
-                          urlImage: widget.movie.getUrlImagePoster()),
+                      child: Hero(
+                        tag:
+                            '${widget.fromNavigation}-${widget.movie.getUrlImagePoster()}',
+                        child: ImageMovie(
+                          urlImage: widget.movie.getUrlImagePoster(),
+                        ),
+                      ),
                     ),
                     SizedBox(width: 15),
                     Flexible(

@@ -1,5 +1,6 @@
 import 'package:app_movies_demo_exito_2/config/app_theme.dart';
 import 'package:app_movies_demo_exito_2/global/api/api_client.dart';
+import 'package:app_movies_demo_exito_2/src/data/datasources/api/movies_api.dart';
 import 'package:app_movies_demo_exito_2/src/data/repositories_impl/movie_repository_impl.dart';
 import 'package:app_movies_demo_exito_2/src/domain/repositories/movie_repository.dart';
 import 'package:app_movies_demo_exito_2/src/presentation/controllers/casting_movie_controller.dart';
@@ -7,14 +8,13 @@ import 'package:app_movies_demo_exito_2/src/presentation/controllers/movies_now_
 import 'package:app_movies_demo_exito_2/src/presentation/controllers/movies_popular_controller.dart';
 import 'package:app_movies_demo_exito_2/src/presentation/list_movies/list_movies_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get_it/get_it.dart';
 import 'package:provider/provider.dart';
 
 final getIt = GetIt.instance;
 
 void main() {
-  getIt.registerSingleton<ApiClient>(ApiClient());
+  getIt.registerSingleton<MoviesApi>(MoviesApi(ApiClient()));
   getIt.registerLazySingleton<MovieRepository>(() => MovieRepositoryImpl());
   runApp(const MyApp());
 }

@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class ListCasting extends StatelessWidget {
-  const ListCasting({Key? key}) : super(key: key);
+  const ListCasting({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +13,7 @@ class ListCasting extends StatelessWidget {
       builder: (context, castingMovieController, child) {
         if (castingMovieController.state == ControllerState.initial ||
             castingMovieController.state == ControllerState.loading) {
-          return Center(child: CircularProgressIndicator());
+          return const Center(child: CircularProgressIndicator());
         } else if (castingMovieController.state == ControllerState.error) {
           return Column(
             children: [
@@ -27,7 +27,7 @@ class ListCasting extends StatelessWidget {
                 onPressed: () {
                   castingMovieController.getCastingMovie();
                 },
-                child: Text("Reintentar"),
+                child: const Text('Reintentar'),
               ),
             ],
           );
@@ -36,7 +36,7 @@ class ListCasting extends StatelessWidget {
           return ListView.separated(
             scrollDirection: Axis.horizontal,
             itemBuilder: (context, index) {
-              final actor = casting![index];
+              final actor = casting[index];
               return ItemListViewMovie(
                 text: actor.name,
                 urlImage: actor.getUrlImage,

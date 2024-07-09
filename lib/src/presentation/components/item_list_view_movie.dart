@@ -17,8 +17,8 @@ class ItemListViewMovie extends StatelessWidget {
       width: 100,
       child: Column(
         children: [
-          ImageMovie(urlImage: urlImage),
-          SizedBox(height: 5),
+          Hero(tag: 'popular-$urlImage', child: ImageMovie(urlImage: urlImage)),
+          const SizedBox(height: 5),
           Text(
             text,
             overflow: TextOverflow.ellipsis,

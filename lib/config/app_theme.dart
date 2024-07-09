@@ -18,7 +18,7 @@ class AppTheme {
     ),
     scaffoldBackgroundColor: Colors.grey[700],
     canvasColor: Colors.white,
-    progressIndicatorTheme: ProgressIndicatorThemeData(color: Colors.white)
+    progressIndicatorTheme: const ProgressIndicatorThemeData(color: Colors.white),
   );
 
   final lightTheme = ThemeData(
@@ -26,18 +26,18 @@ class AppTheme {
     brightness: Brightness.light,
     appBarTheme: AppBarTheme(
       backgroundColor: Colors.grey[100],
-      titleTextStyle: TextStyle(
+      titleTextStyle: const TextStyle(
         color: Colors.black,
         fontSize: 20,
         fontWeight: FontWeight.w500,
         letterSpacing: 0.2,
       ),
-      iconTheme: IconThemeData(
+      iconTheme: const IconThemeData(
         color: Colors.black,
       ),
     ),
     scaffoldBackgroundColor: Colors.white,
     canvasColor: Colors.black,
-    progressIndicatorTheme: ProgressIndicatorThemeData(color: Colors.purple)
+    progressIndicatorTheme: const ProgressIndicatorThemeData(color: Colors.purple),
   );
 }

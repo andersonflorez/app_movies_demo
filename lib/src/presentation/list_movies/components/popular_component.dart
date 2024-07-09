@@ -1,14 +1,7 @@
 import 'package:app_movies_demo_exito_2/global/controller_state.dart';
-import 'package:app_movies_demo_exito_2/src/domain/models/movie.dart';
-import 'package:app_movies_demo_exito_2/src/domain/repositories/movie_repository.dart';
-import 'package:app_movies_demo_exito_2/src/presentation/components/image_movie.dart';
-import 'package:app_movies_demo_exito_2/src/presentation/components/item_list_view_movie.dart';
-import 'package:app_movies_demo_exito_2/src/presentation/controllers/casting_movie_controller.dart';
 import 'package:app_movies_demo_exito_2/src/presentation/controllers/movies_popular_controller.dart';
-import 'package:app_movies_demo_exito_2/src/presentation/detail_movie/detail_movie_screen.dart';
 import 'package:app_movies_demo_exito_2/src/presentation/list_movies/components/list_popular_movies.dart';
 import 'package:flutter/material.dart';
-import 'package:get_it/get_it.dart';
 import 'package:provider/provider.dart';
 
 class PopularComponent extends StatelessWidget {

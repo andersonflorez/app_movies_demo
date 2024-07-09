@@ -15,7 +15,7 @@ class AppBarDetail extends StatelessWidget {
       expandedHeight: 200.0,
       backgroundColor: Colors.black,
       leading: InkWell(
-        child: Icon(
+        child: const Icon(
           Icons.arrow_back,
           color: Colors.white,
         ),
